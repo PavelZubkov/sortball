@@ -1,0 +1,27 @@
+#FIXME change file name to actual app name
+#FIXME change to actual app name
+name: $hoop_ballsort_app
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+  schedule:
+  - cron: "0 7 * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - uses: hyoo-ru/mam_build@master2
+      with:
+        package: 'hoop/ballsort'
+        modules: 'app'
+    
+    - uses: hyoo-ru/gh-deploy@v4.4.1
+      if: github.ref == 'refs/heads/master'
+      with:
+        folder: 'hoop/ballsort/app/-'
