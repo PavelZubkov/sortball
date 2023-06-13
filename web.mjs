@@ -2454,4 +2454,5 @@ var $;
 })($ || ($ = {}));
 //mol/plugin/plugin.ts
 
+export default $
 //# sourceMappingURL=web.js.map
