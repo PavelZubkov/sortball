@@ -470,22 +470,11 @@ declare namespace $ {
     var $mol_dom_context: typeof globalThis;
 }
 
-declare namespace $ {
-    export function $mol_wire_sync<Host extends object>(obj: Host): ObjectOrFunctionResultAwaited<Host>;
-    type FunctionResultAwaited<Some> = Some extends (...args: infer Args) => infer Res ? (...args: Args) => Awaited<Res> : Some;
-    type MethodsResultAwaited<Host extends Object> = {
-        [K in keyof Host]: FunctionResultAwaited<Host[K]>;
-    };
-    type ObjectOrFunctionResultAwaited<Some> = (Some extends (...args: any) => unknown ? FunctionResultAwaited<Some> : {}) & (Some extends Object ? MethodsResultAwaited<Some> : Some);
-    export {};
-}
-
 interface $node {
     [key: string]: any;
 }
 declare var $node: $node;
-declare const importAsync: (uri: string) => Promise<any>;
-declare const importSync: ((uri: string) => any) & {};
+declare const cache: Map<string, any>;
 
 declare namespace $ {
     function $mol_env(): Record<string, string | undefined>;
